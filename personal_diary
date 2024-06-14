@@ -1,0 +1,46 @@
+import os
+class Diary:
+    
+    def __init__(self,filename):
+        self.filename = filename
+    
+    def write_entry(self,entry):
+        try:
+            with open(self.filename,'a') as file:
+                     file.write(entry + "\n")
+        except IOError as e:
+             print(f"Error writing to file:{e}")
+
+      def view_entries(self):
+          try:
+             file = open("self.filename","r")
+                  entries = file.readlines()
+                  for entry in entries:
+                      print(entry.strip())
+          except FileNotFoundError:
+               print("Diary file not found.")
+          except IOError as e:
+               print(f"Error reading file:{e}")
+
+def main():
+    diary = Diary("diary.txt")
+    while True:
+        print("1.Write entry")
+        print("2.View entries")
+        print("3.Quit")
+        choice = input("Choose an option:")
+        if choice =="1":
+            entry =input("Write your entry:")
+            diary.write_entry(entry)
+        elif choice =="2":
+            diary.view_entries()
+        elif choice =="3":
+            break
+        else:
+            print("Invalid choice.Please try again.")
+
+if __name__ == "__main__":
+       main()
+
+                  
+                                
